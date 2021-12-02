@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace App\Models;
@@ -12,3 +13,6 @@ class Services extends Model
     
     
 }
+
+
+
