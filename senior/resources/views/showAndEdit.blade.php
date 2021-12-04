@@ -32,7 +32,7 @@
                         <label for="password"></label>
                         <input type="password" class="form-control" value="{{ $user->password }}" name="password">
                     </div>
-                    @if ($user->manager_flg == 1)
+                    @if (Auth::user()->id == $user -> id)
                     <div class="form-check form-check-inline">
                         <input type="radio" class="form-check-input" id="manager_flg" value=1 checked name="manager_flg">
                         <label class="form-check-input" for="manager_flg">管理者の方はこちら</label>
@@ -41,7 +41,8 @@
                         <input type="radio" class="form-check-input" id="remove_manager_flg" value=0 name="manager_flg">
                         <label class="form-check-input" for="remove_manager_flg">管理者登録を外す</label>
                     </div>
-                    @else
+                    @endif
+                    @if (Auth::user()->id == $user -> id)
                         <input type="hidden" class="form-check-input" id="manager_flg" value=0 name="manager_flg">
                         <label class="form-check-input" for="manager_flg"></label>
                     <div class="form-check form-check-inline">

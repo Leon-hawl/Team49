@@ -44,7 +44,7 @@ class SeniorListController extends Controller
     {
         $loginId = Auth::id();
         $search = $request->input('search');
-        $query = User::query()->where('manager_id', '!=', $loginId)->WhereNotIn('id', [$loginId]);
+        $query = User::query()->WhereNotIn('id', [$loginId]);
 
         if ($search !== null) {
             $spaceConversion = mb_convert_kana($search, 's');
@@ -53,18 +53,18 @@ class SeniorListController extends Controller
 
 
             foreach($wordArraySearched as $value) {
-                $query->where('name', 'like', '%'.$value.'%');
+                $query->where('manager_id', '!=', $loginId)->where('name', 'like', '%'.$value.'%');
             }
 
-            $users = $query->paginate(2);
+            $users = $query->paginate(10);
             $resultMessage = '検索結果';
 
-            if (!User::where('manager_id', '!=', $loginId)->Where('name', 'like', '%'.$value.'%')->exists()) {
+            if (!User::where('manager_flg', '!=', '1')->where('manager_id', '!=', $loginId)->Where('name', 'like', '%'.$value.'%')->exists()) {
                 $resultMessage = '該当者なし';
             }
 
         } else {
-            $users = User::select('*')->whereNotIn('manager_id', [$loginId])->simplePaginate(2);
+            $users = User::select('*')->where('manager_flg', '!=', '1')->where('manager_id', '=', null)->simplePaginate(10);
             $resultMessage = '全件表示';
         }
 
@@ -92,9 +92,8 @@ class SeniorListController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
 
-        
+        $user = User::find($id);
 
         return view('services.showAndEdit', compact('user'));
     }
@@ -136,7 +135,7 @@ class SeniorListController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $user -> manager_id = 0;
+        $user -> manager_id = null;
         $user -> save();
 
         return redirect()->route('seniorList.index');

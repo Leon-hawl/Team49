@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\ServiceController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('services', 'ServiceController');
+Route::resource('users', 'UserController');
+Route::resource('seniorList', 'SeniorListController');

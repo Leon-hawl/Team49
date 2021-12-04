@@ -33,7 +33,7 @@
                             <a class="nav-link disabled" aria-current="page" href="#">id:{{ Auth::user()->id }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page" href="#">名前:{{ Auth::user()->name }}</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('seniorList.show', Auth::user()->id) }}">名前:{{ Auth::user()->name }}</a>
                         </li>
                         @if ( Auth::user()->manager_flg === 1)
                         <li class="nav-item">
@@ -42,8 +42,9 @@
                         @endif
                     </ul>
 
-                <form class="d-flex">
-                    <button class="btn btn-sm btn-outline-success me-2" type="button">ログアウト</button>
+                <form class="d-flex" action="" method="POST">
+                    @csrf
+                    <a class="btn btn-sm btn-outline-success me-2" type="button">ログアウト</a>
                 </form>
             </div>
         </div>
