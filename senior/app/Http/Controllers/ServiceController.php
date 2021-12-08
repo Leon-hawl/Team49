@@ -25,10 +25,19 @@ class ServiceController extends Controller
     
     
     public function store(Request $request)
-    {
-       
-        $user = new User();
-        
+   
+   {
+   
+    $this->validate($request,[
+        'email' => 'email|required|unique:users',
+    ],
+    [
+        'email.unique' => 'メールアドレスが使用されているため登録できません。',
+  
+       ]);
+   
+      $user = new User();
+             
         // 値の登録
         //$user->user_id = 1;
         $user->id = $request->id;
@@ -37,15 +46,21 @@ class ServiceController extends Controller
         $user->password = $request->password;
         if($request->manager){
             $user->manager_flg = $request->manager; 
+        
         }
+         
+        
         
         // 保存
         $user->save();
         
+               
         // ログイン画面にリダイレクト
         return redirect()->to('services/signin');
     }  
     
+   
+   
     public function postSignin(Request $request)
     {
          $this->validate($request,[
@@ -66,27 +81,30 @@ class ServiceController extends Controller
            return redirect('services/signup');
         }
         
-        // 一致したならば
+        // 一致
         if ($request->password == $user[0]->password) {
             
             // セッション
             session(['name'  => $user[0]->name]);
             session(['email' => $user[0]->email]);
-            session(['manager_flg' => $user[0]->manager_flg]);
-           //managerの方はwelcomページへ
-            if($user[0]->manager_flg == 1 ){
-               return redirect('/');
-
-           } //一般の方はlaravelのショッピングページへ     
+                  
             return redirect('https://laravel.bigcartel.com/');
-           
-         
+        
+         //マネージャーの人はwelcomページへ   
+         if ($request->password == $user[0]->password) {
+            
+                // セッション
+                session(['name'  => $user[0]->name]);
+                session(['email' => $user[0]->email]);
+                session(['manager_flg' => $user[1]->manager_flg]);
+                return redirect('/');
          }        
         
-        // 不一致ならばアカウント登録画面へ    
-        else{
+
+        // 不一致    
+        }else{
             return redirect('services/signup');
         }
         
     }
-}        
+}
