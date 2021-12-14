@@ -72,39 +72,33 @@ class ServiceController extends Controller
     $password = $request->password;
     
     
-    
     if (isset($_POST['email']) && isset($_POST['password'])) 
         // ログインチェック実行
         
-        $user = User::where('email', $request->email)->get();
-        if (count($user) === 0){
-           return redirect('services/signup');
-        }
+        $user = User::where('email', $request->email)->get();{
+       
+        //email不一致
+        }if (count($user) === 0){
+           return redirect('services/signup')->with('message', 'メールアドレスがが違います');
         
-        // 一致
-        if ($request->password == $user[0]->password) {
+        
+        // manager一致
+        }else if ($request->password == $user[0]->password && $user[0]->manager_flg == 1){ 
             
-            // セッション
-            session(['name'  => $user[0]->name]);
-            session(['email' => $user[0]->email]);
-                  
-            return redirect('https://laravel.bigcartel.com/');
+            session(['manager_flg' => $user[0]->manager_flg]);      
+            return redirect('https://laravel.bigcartel.com/');///->with('message', 'ログインしました。');
         
-         //マネージャーの人はwelcomページへ   
-         if ($request->password == $user[0]->password) {
-            
-                // セッション
-                session(['name'  => $user[0]->name]);
-                session(['email' => $user[0]->email]);
-                session(['manager_flg' => $user[1]->manager_flg]);
-                return redirect('/');
-         }        
+         //一般会員   
+        }else if ($request->password == $user[0]->password) {
         
-
-        // 不一致    
+             session(['email' => $user[0]->email]);
+             session(['password'  => $user[0]->password]);
+             return redirect('/');  // ->with('message', 'ログインしました。');      
+        
+         // Password不一致    
         }else{
-            return redirect('services/signup');
+             return redirect('services/signin')->with('message', 'パスワードが違います');
         }
         
     }
-}
+}        

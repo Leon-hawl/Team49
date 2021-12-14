@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 <?php
 
 namespace App\Models;
+ 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class Services extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'name', 'email', 'password','manager',];
+    protected $fillable = ['id', 'name', 'email', 'password','manager_flg',];
     
     
 }

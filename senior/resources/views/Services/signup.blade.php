@@ -33,21 +33,26 @@
             <label for="manager">管理者の方はこちら</label>
            <br><br><input type="submit" name="button1" value="登録" class="btn btn-primary btn-wide" />   
             <p class="mt-3 mb-2"><a href="signin">ログイン画面へ</a></p>
-          
-            @if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
+           
+            @if (session('message'))
+           <div class="alert alert-danger">
+            {{ session('message') }}
+            </div>
+             @endif
+           
+
+             @if ($errors->any())
+	        <div class="alert alert-danger">
 	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
+	                {{ $error }}
 	            @endforeach
-	        </ul>
-	    </div>
-	@endif
-    
-    
-
-
-    
+	        </div>
+	        @endif
+        
+        
+        
+        
+        
         </form>
     </main>
 </body>

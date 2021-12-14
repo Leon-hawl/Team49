@@ -29,11 +29,13 @@
         <br><button class="btn btn-primary btn-wide" type="submit">ログイン</button>
             <p class="mt-3 mb-2"><a href="signup">アカウント登録する</a></p>
             
-
-            <!-- フラッシュメッセージ -->
-            <div class="flash_message">
-                {{ session('flash_message') }}
+            @if (session('message'))
+            <div class="alert alert-danger">
+            {{ session('message') }}
             </div>
+            @endif
+
+            
         </form>
     </main>
     
