@@ -17,24 +17,26 @@
 
             @if($user->manager_id == Auth::user()->id)
             <div class="card-body">
-                <ul class="list-unstyled col-2">
+
+                <ul class="list-unstyled col-9">
                     <li class="list-group list-group-horizontal col-md-2">
                         <p class="card-text">id:{{ $user->id }}</p>
                         <p class="card-text col-md-2">email:{{ $user->email }}</p>
                     </li>
                     <h5 class="card-title">名前:{{ $user->name }}</h5>
                 </ul>
-                <li class="list-group list-group-horizontal">
-                    <a href="{{ route('seniorList.show', $user->id) }}" class="btn btn-outline-primary">詳細へ</a>
-                    <form action="{{ route('seniorList.destroy', $user->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-outline-danger" value="管理対象から外す" onclick='return confirm("管理対象から外しますか?");'></input>
-                    </form>
+                    <li class="list-group list-group-horizontal">
+                        <a href="{{ route('seniorList.show', $user->id) }}" class="btn btn-outline-primary m-1">詳細へ</a>
+                        <a href="#" class="btn btn-outline-secondary m-1">サービス一覧へ</a>
+                        <form action="{{ route('seniorList.destroy', $user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-outline-danger m-1" value="管理対象から外す" onclick='return confirm("管理対象から外しますか?");'></input>
+                        </form>
+                    </li>
 
-                </li>
             </div>
-            <div class="card-footer text-muted">
+            <div class="border-bottom">
             </div>
             @endif
             @endforeach

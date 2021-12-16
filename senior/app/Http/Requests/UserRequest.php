@@ -26,11 +26,11 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|max:20',
             'email' => 'required|max:255',
-            'password' => 'required|max:20',
+            'password' => 'required|max:20|min:8',
         ];
     }
 
-    public function messaes()
+    public function messages()
     {
         return [
             'name.required' => '名前は必須です。',
@@ -39,6 +39,7 @@ class UserRequest extends FormRequest
             'email.max' => 'メールアドレスは255文字以内で入力してください。',
             'password.required' => 'パスワードは必須です。',
             'password.max' => 'パスワードは20文字以内で入力してください。',
+            'password.min' => 'パスワードは8文字以上で入力してください。',
         ];
     }
 }

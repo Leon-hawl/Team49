@@ -22,6 +22,13 @@ class SeniorListController extends Controller
     public function index()
     {
         $id = Auth::id();
+        $loginUser = User::find($id);
+
+        if ($loginUser -> manager_flg == 0) {
+            $user = $loginUser;
+            return view('services.fav', compact('user'));
+        }
+
         $users = User::all()->Where('manager_id', '=', $id)->WhereNotIn('id', $id);
 
         if(count($users) == 0) {
@@ -31,7 +38,6 @@ class SeniorListController extends Controller
         }
 
         return view('services.index', compact('users'))->with('message', $message);
-
 
     }
 
@@ -43,6 +49,13 @@ class SeniorListController extends Controller
     public function create(Request $request)
     {
         $loginId = Auth::id();
+        $loginUser = User::find($loginId);
+
+        //エラーメッセージに変更各ビュー
+        // if ($loginUser -> manager_flg == 0) {
+        //     return abort(404);
+        // }
+
         $search = $request->input('search');
         $query = User::query()->WhereNotIn('id', [$loginId]);
 
@@ -64,7 +77,7 @@ class SeniorListController extends Controller
             }
 
         } else {
-            $users = User::select('*')->where('manager_flg', '!=', '1')->where('manager_id', '=', null)->simplePaginate(10);
+            $users = User::select('*')->where('id', '!=', $loginId)->where('manager_flg', '!=', '1')->where('manager_id', '=', null)->simplePaginate(10);
             $resultMessage = '全件表示';
         }
 
@@ -94,6 +107,11 @@ class SeniorListController extends Controller
     {
 
         $user = User::find($id);
+        $authorId = Auth::id();
+
+        // if($user -> manager_id !== $authorId && $authorId !== $user -> id){
+        //     return abort(404);
+        // }
 
         return view('services.showAndEdit', compact('user'));
     }
@@ -106,7 +124,16 @@ class SeniorListController extends Controller
      */
     public function edit($id)
     {
+        $user = User::find($id);
+        $authorId = Auth::id();
 
+        if($user -> manager_id !== $authorId && $authorId !== $user -> id){
+            return abort(404);
+        }
+
+        $user -> save();
+
+        return redirect()->route('seniorList.index');
     }
 
     /**
@@ -119,8 +146,8 @@ class SeniorListController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
         $user -> manager_id = $request -> manager_id;
+
         $user -> save();
 
         return redirect()->route('seniorList.index');
@@ -135,6 +162,12 @@ class SeniorListController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        $authorId = Auth::id();
+        if($user -> manager_id !== $authorId && $authorId !== $user -> id){
+            return abort(404);
+        }
+
         $user -> manager_id = null;
         $user -> save();
 

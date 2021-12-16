@@ -21,18 +21,18 @@
                 @csrf
                 @method('PATCH')
                     <div class="form-group">
-                        <label for="name"></label>
+                        <label for="name">名前</label>
                         <input type="text" class="form-control" value="{{ $user->name }}" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="email"></label>
+                        <label for="email">メールアドレス</label>
                         <input type="email" class="form-control" value="{{ $user->email }}" name="email">
                     </div>
                     <div class="form-group">
-                        <label for="password"></label>
-                        <input type="password" class="form-control" value="{{ $user->password }}" name="password">
+                        <label for="password">新しいパスワード</label>
+                        <input type="password" class="form-control" name="password">
                     </div>
-                    @if (Auth::user()->id == $user -> id)
+                    @if ((Auth::user()->id == $user -> id) && $user -> manager_flg == 1)
                     <div class="form-check form-check-inline">
                         <input type="radio" class="form-check-input" id="manager_flg" value=1 checked name="manager_flg">
                         <label class="form-check-input" for="manager_flg">管理者の方はこちら</label>
@@ -42,7 +42,7 @@
                         <label class="form-check-input" for="remove_manager_flg">管理者登録を外す</label>
                     </div>
                     @endif
-                    @if (Auth::user()->id == $user -> id)
+                    @if ((Auth::user()->id == $user -> id) && $user -> manager_flg == 0)
                         <input type="hidden" class="form-check-input" id="manager_flg" value=0 name="manager_flg">
                         <label class="form-check-input" for="manager_flg"></label>
                     <div class="form-check form-check-inline">
@@ -50,14 +50,27 @@
                         <label class="form-check-input" for="add_manager_flg">管理者の方はこちら</label>
                     </div>
                     @endif
-                    <div class="mb-2"></div>
-                    <button class="btn btn-outline-primary" type="submit">更新する</button>
+                    @if(Auth::user()->id !== $user -> id)
+                        <input type="hidden" class="form-check-input" id="manager_flg" value="{{ $user->manager_flg }}" name="manager_flg">
+                    @endif
+                    <div class="mb-2">
+                        <button class="btn btn-outline-primary" type="submit">更新する</button>
+                    </div>
                 </form>
+                <div class="form-group">
+                    <form action="{{ route('users.destroy', $user->id) }}"  method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="削除する" class="btn btn-outline-danger" onclick='return confirm("削除しますか");'>
+                    </form>
+                </div>
+
+
 
             </div>
         </div>
         <div class="col-md-2">
-            <a href="{{ route('seniorList.index') }}" class="btn btn-outline-success">戻る</a>
+            <a href="{{ route('seniorList.index') }}" class="form-group btn btn-outline-success">戻る</a>
         </div>
     </div>
 </div>

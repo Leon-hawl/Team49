@@ -6,10 +6,28 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
 
+    /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed'],
+            'manager_flg' => ['required'],
+        ]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -18,7 +36,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
     }
 
     /**
@@ -76,14 +93,16 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-
         if($request -> manager_flg == 1) {
             $user -> manager_flg = $request -> manager_flg;
         } else {
             $user -> manager_flg = $request -> manager_flg;
         }
 
-        $user->update($request->all());
+        $user -> name = $request -> name;
+        $user -> email = $request -> email;
+        $user -> password = bcrypt($request->password);
+        $user -> save();
 
         return redirect()->route('seniorList.index');
     }
@@ -96,7 +115,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $managedUser = [];
+
+        if ($user -> manager_flg == 1) {
+            $managedUser[] = User::select('*')->where('manager_id', '=', $user->id);
+            foreach ($managedUser as $managedUser) {
+                $managedUser -> manager_id = null;
+                $managedUser -> save();
+            }
+        }
+
+        $user -> delete();
+
+        return redirect()->route('seniorList.index');
     }
-    
+
 }
