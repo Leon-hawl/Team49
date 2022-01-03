@@ -24,12 +24,25 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    public function redirectPath()
+    {
+        return route('seniorList.index');
+        //例）return 'costs/index';
+    }
+
     /**
-     * Where to redirect users after registration.
+     * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/services/index';
+
+    // /**
+    //  * Where to redirect users after registration.
+    //  *
+    //  * @var string
+    //  */
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.

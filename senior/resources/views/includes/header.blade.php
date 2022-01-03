@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('const.title.top', 'top') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -34,10 +34,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page">id:{{ Auth::user()->id }}</a>
+                            <a class="nav-link disabled" aria-current="page">{{ config('const.user.id', 'id') }}:{{ Auth::user()->id }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page">名前:{{ Auth::user()->name }}</a>
+                            <a class="nav-link disabled" aria-current="page">{{ config('const.user.name', 'name') }}:{{ Auth::user()->name }}</a>
                         </li>
                         @if ( Auth::user()->manager_flg === 1)
                         <li class="nav-item">
@@ -46,7 +46,7 @@
                         @endif
                     </ul>
                     <div class="nav-item">
-                            <a class="btn btn-sm btn-outline-dark me-2 mr-2" aria-current="page" href="{{ route('seniorList.show', Auth::user()->id) }}">ユーザー情報</a>
+                            <a class="btn btn-sm btn-outline-dark me-2 mr-2" aria-current="page" href="{{ route('seniorList.show', Auth::user()->id) }}">{{ config('const.button.users_info', 'users_info') }}</a>
                     </div>
                     <div class="nav-item">
                         <a class="btn btn-sm btn-outline-success me-2" href="{{ route('logout') }}"

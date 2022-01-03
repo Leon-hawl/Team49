@@ -65,6 +65,9 @@
                             <label class="col-md-4 col-form-label text-md-right">{{ __('管理者登録') }}</label>
                             <div class="col-md-6">
                                     <div class="form-check form-check-inline">
+                                        <input type="hidden" class="form-check-input" id="add_manager_flg" value=0 name="manager_flg">
+                                    </div>
+                                    <div class="form-check form-check-inline">
                                         <input type="checkbox" class="form-check-input" id="add_manager_flg" value=1 name="manager_flg">
                                         <label class="form-check-input form-check-label" for="add_manager_flg">管理者の方はこちら</label>
                                     </div>

@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Service;
 
 class UserController extends Controller
 {
@@ -118,15 +119,21 @@ class UserController extends Controller
         $user = User::find($id);
         $managedUser = [];
 
+        $services = Service::select('*')->where('user_id', '=', $user->id);
+
         if ($user -> manager_flg == 1) {
-            $managedUser[] = User::select('*')->where('manager_id', '=', $user->id);
+            $managedUser = User::all()->where('manager_id', '=', $user->id);
             foreach ($managedUser as $managedUser) {
                 $managedUser -> manager_id = null;
                 $managedUser -> save();
             }
         }
-
+        $services ->delete();
         $user -> delete();
+
+        if (Auth::id() == null) {
+            return redirect('/welcome');
+        }
 
         return redirect()->route('seniorList.index');
     }
