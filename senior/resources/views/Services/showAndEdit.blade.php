@@ -72,14 +72,8 @@
                     <div class="border-top">
                         <a href="{{ route('seniorList.index') }}" class="form-group btn btn-sm btn-outline-dark mt-2">{{ config('const.button.back') }}</a>
                     </div>
-
-
-
-
             </div>
         </div>
-
-
     </div>
 </div>
 @endsection
