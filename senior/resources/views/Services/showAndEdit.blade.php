@@ -69,7 +69,7 @@
                         <a href="{{ route('seniorList.index', $user->id) }}" class="btn btn-sm btn-outline-dark mt-2">{{ config('const.button.senior') }}</a>
                     </div>
                 @endif
-                    <div class="border-top">
+                    <div class>
                         <a href="{{ route('seniorList.index') }}" class="form-group btn btn-sm btn-outline-dark mt-2">{{ config('const.button.back') }}</a>
                     </div>
             </div>
