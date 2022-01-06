@@ -25,48 +25,52 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand">ログイン情報</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page">{{ config('const.user.id', 'id') }}:{{ Auth::user()->id }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page">{{ config('const.user.name', 'name') }}:{{ Auth::user()->name }}</a>
-                        </li>
-                        @if ( Auth::user()->manager_flg === 1)
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-current="page">管理者でログイン中</a>
-                        </li>
-                        @endif
-                    </ul>
-                    <div class="nav-item">
-                            <a class="btn btn-sm btn-outline-dark me-2 mr-2" aria-current="page" href="{{ route('seniorList.show', Auth::user()->id) }}">{{ config('const.button.users_info', 'users_info') }}</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="btn btn-sm btn-outline-success me-2" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('ログアウト') }}
-                        </a>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">ログイン情報</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link disabled text-dark" aria-current="page">{{ config('const.user.id', 'id') }}:{{ Auth::user()->id }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled text-dark" aria-current="page">{{ config('const.user.name', 'name') }}:{{ Auth::user()->name }}</a>
+                            </li>
+                            @if ( Auth::user()->manager_flg === 1)
+                            <li class="nav-item">
+                                <a class="nav-link disabled text-dark" aria-current="page">管理者でログイン中</a>
+                            </li>
+                            @endif
+                        </ul>
+                        <div class="nav-item">
+                                <a class="btn btn-sm btn-outline-dark me-2 mr-2" aria-current="page" href="{{ route('seniorList.show', Auth::user()->id) }}">{{ config('const.button.users_info', 'users_info') }}</a>
+                        </div>
+                        <div class="nav-item">
+                            <a class="btn btn-sm btn-outline-success me-2" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('ログアウト') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                </div>
             </div>
+        </nav>
+
+        <div class="border-bottom 1rem solid">
         </div>
-    </nav>
-    <div class="border-bottom 1rem solid">
-    </div>
 
-    <main class="py-4">
+        <main class="py-4">
             @yield('content')
-    </main>
-
+        </main>
+    </div>
 </body>
+</html>
