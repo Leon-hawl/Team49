@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-header text-center">
-                <p class="card-text">{{ config('const.list.list', 'list') }}</p>
+                <h3 class="card-text">{{ config('const.list.list', 'list') }}</h3>
             </div>
 
             @if(count($users) == 0)

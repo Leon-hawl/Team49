@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card-header">
-                <h5>{{ config('const.title.acount', 'acount') }}</h5>
+            <div class="card-header text-center">
+                <h3 class="card-text">{{ config('const.title.acount', 'acount') }}</h3>
             </div>
             @if ( $errors -> any() )
                 <div class="alert alert-danger mt-2">
@@ -64,12 +64,18 @@
                         <input type="submit" value="{{ config('const.button.delete', 'delete') }}" class="btn btn-outline-danger" onclick="{{ config('const.message.delete') }}">
                     </form>
                 </div>
+
+                <div class="border-bottom mt-2 mb-2"></div>
                 @if(Auth::user()->manager_flg == 1)
-                    <div class="border-top">
+                    <div class="">
                         <a href="{{ route('seniorList.index', $user->id) }}" class="btn btn-sm btn-outline-dark mt-2">{{ config('const.button.senior') }}</a>
                     </div>
                 @endif
+<<<<<<< HEAD
                     <div class>
+=======
+                    <div class="">
+>>>>>>> yumoto
                         <a href="{{ route('seniorList.index') }}" class="form-group btn btn-sm btn-outline-dark mt-2">{{ config('const.button.back') }}</a>
                     </div>
             </div>

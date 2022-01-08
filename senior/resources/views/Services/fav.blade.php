@@ -5,14 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-header text-center">
-                <h2 class="card-text">{{ $user -> name }}の{{ config('const.title.fav', 'fav') }}</h2>
+                <h2 class="card-text">{{ $user -> name }}の</h2>
+                <h3 class="card-text">{{ config('const.title.fav', 'fav') }}</h3>
             </div>
+
+
+
             <div class="card-body">
+                <div class="text-right">
+                    <a href="{{ route('fav.favAdd', $user->id) }}" class="btn btn-outline-success btn-lg m-2 ml-2">{{ config('const.button.new', 'new') }}</a>
+                </div>
+
             @if(count($services) == 0)
             <div class="text-center mt-2 mb-2">
-                <h5 class="card-title">{{ config('const.message.not_add', 'not_add') }}</h5>
+                <h5 class="card-title">{{ config('const.message.not_add') }}</h5>
+                <h5 class="card-title">{{ config('const.message.add') }}</h5>
+
             </div>
+
             <div class="border-bottom mt-2"></div>
+
             @else
 
             @foreach($services as $service)
@@ -40,6 +52,7 @@
             </div>
 
 
+
             @if(Auth::user()->manager_flg == 1)
                 <div>
                     <a class="btn btn-sm btn-outline-dark mt-2 ml-4" href="{{ route('seniorList.show', $user->id) }}">{{ $user->name }}の{{config('const.button.users_info', 'users_info') }}</a>
@@ -49,9 +62,7 @@
                 </div>
             @endif
         </div>
-        <div class="col-md-2">
-            <a href="{{ route('fav.favAdd', $user->id) }}" class="btn btn-outline-success mt-2 ml-4">{{ config('const.button.new', 'new') }}</a>
-        </div>
+
 
     </div>
 

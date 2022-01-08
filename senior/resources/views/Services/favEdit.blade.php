@@ -7,10 +7,8 @@
             <div class="card-header text-center">
                 <h2 class="card-text">{{ config('const.title.edit', 'edit') }}</h2>
             </div>
-            <div class="border-bottom p-2">
-                <div class="text-center">
-                    <a href="https://www.google.com/" class="card-text" target=”_blank”>google検索</a>
-                </div>
+            <div class="border-bottom p-2 text-center">
+                    <a href="https://www.google.com/" class="btn btn-lg btn-link" target=”_blank”>google検索</a>
             </div>
             @if ( $errors -> any() )
                 <div class="alert alert-danger mt-2">
