@@ -35,7 +35,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
 
@@ -55,7 +55,7 @@
                             </li>
 
                             <li class="nav-item">
-                            <a class="btn btn-sm btn-outline-success me-2 mt-1" href="{{ route('logout') }}"
+                            <a class="btn btn-sm btn-outline-dark me-2 mt-1" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('ログアウト') }}

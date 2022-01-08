@@ -36,12 +36,13 @@ return [
     ],
 
     'message' => [
-        'not_add' => '未登録です',
-        'fav_list' => 'まだ登録されていません',
+        'not_add' => '未登録です。',
+        'add' => '新規登録をしてください。',
+        'fav_list' => 'まだ登録されていません。',
         'remove_management' => 'return confirm("管理対象から外しますか?");',
         'delete' => 'return confirm("削除しますか");',
         'nothing' => '該当者なし',
-        'nothing_user' => '登録できる入居者はいません',
+        'nothing_user' => '登録できる入居者はいません。',
         'result' => '検索結果',
 
     ],
