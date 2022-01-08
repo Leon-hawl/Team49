@@ -13,12 +13,15 @@
         <style>
             html, body {
                 background-color: #fff;
-
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+
                 margin: 0;
+                width: 100%;
+                height: 10vh;
+
+
             }
 
             .full-height {
@@ -46,7 +49,7 @@
             }
 
             .title {
-                font-size: 62px;
+                font-size: 60px;
             }
 
             .links > a {
@@ -62,6 +65,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
         </style>
     </head>
     <body>
@@ -81,8 +85,10 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                {{ config('const.title.top', 'top') }}
+                <div class="back-img">
+                    <div class="title m-b-md">
+                    {{ config('const.title.top', 'top') }}
+                    </div>
                 </div>
 
             </div>
