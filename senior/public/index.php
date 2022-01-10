@@ -21,7 +21,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-require '/senior/vendor/autoload.php';senior
+require '/senior/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
