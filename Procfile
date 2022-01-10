@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 senior/Procfile/
+web: vendor/bin/heroku-php-apache2 senior/public/
