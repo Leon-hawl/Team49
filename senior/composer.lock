@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a6ad39741347f7ba1700b0a5bdc6b53",
+    "content-hash": "dc28ce18e8ba26975b1fbe69285d49ed",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -21,7 +21,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^8.2",
@@ -112,7 +112,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^6.0",
@@ -799,7 +799,7 @@
             },
             "require": {
                 "ext-fileinfo": "*",
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.2",
@@ -1326,30 +1326,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.4",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/ef29f6d262798707a9edd554e2b82517ef3a9376",
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "Psr\\Log\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1370,9 +1370,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.4"
+                "source": "https://github.com/php-fig/log/tree/2.0.0"
             },
-            "time": "2021-05-03T11:20:27+00:00"
+            "time": "2021-07-14T16:41:46+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -1773,21 +1773,20 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.4.2",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "cfcbee910e159df402603502fe387e8b677c22fd"
+                "reference": "380f86c1a9830226f42a08b5926f18aed4195f25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/cfcbee910e159df402603502fe387e8b677c22fd",
-                "reference": "cfcbee910e159df402603502fe387e8b677c22fd",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/380f86c1a9830226f42a08b5926f18aed4195f25",
+                "reference": "380f86c1a9830226f42a08b5926f18aed4195f25",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
-                "symfony/polyfill-php80": "^1.16"
+                "php": ">=8.0.2"
             },
             "type": "library",
             "autoload": {
@@ -1819,7 +1818,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v5.4.2"
+                "source": "https://github.com/symfony/css-selector/tree/v6.0.2"
             },
             "funding": [
                 {
@@ -1835,7 +1834,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-16T21:58:21+00:00"
+            "time": "2021-12-16T22:13:01+00:00"
         },
         {
             "name": "symfony/debug",
@@ -4328,6 +4327,51 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "heroku/heroku-buildpack-php",
+            "version": "v205",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heroku/heroku-buildpack-php.git",
+                "reference": "8937f4b1ab1697b12c06369ed3b0eada2525ee94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/8937f4b1ab1697b12c06369ed3b0eada2525ee94",
+                "reference": "8937f4b1ab1697b12c06369ed3b0eada2525ee94",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heroku-php-apache2",
+                "bin/heroku-php-nginx"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Zuelke",
+                    "email": "dz@heroku.com"
+                }
+            ],
+            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP and Apache2/Nginx as on Heroku",
+            "homepage": "https://github.com/heroku/heroku-buildpack-php",
+            "keywords": [
+                "apache",
+                "apache2",
+                "foreman",
+                "heroku",
+                "nginx",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v205"
+            },
+            "time": "2022-01-07T12:51:32+00:00"
+        },
+        {
             "name": "laravel/ui",
             "version": "v1.3.0",
             "source": {
@@ -4610,7 +4654,7 @@
                 "ext-phar": "*",
                 "ext-xmlwriter": "*",
                 "phar-io/version": "^3.0.1",
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "extra": {
@@ -4666,7 +4710,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "autoload": {
@@ -4819,7 +4863,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "extra": {
@@ -4873,7 +4917,7 @@
             },
             "require": {
                 "ext-filter": "*",
-                "php": "^7.2 || ^8.1",
+                "php": "^7.2 || ^8.0",
                 "phpdocumentor/reflection-common": "^2.2",
                 "phpdocumentor/type-resolver": "^1.3",
                 "webmozart/assert": "^1.9.1"
@@ -4929,7 +4973,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1",
+                "php": "^7.2 || ^8.0",
                 "phpdocumentor/reflection-common": "^2.0"
             },
             "require-dev": {
@@ -6512,7 +6556,7 @@
                 "ext-dom": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
-                "php": "^7.2 || ^8.1"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "autoload": {
@@ -6559,7 +6603,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.1",
+                "php": "^7.2 || ^8.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
@@ -6609,7 +6653,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2.5|^8.0"
+        "php": "^7.3|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
